@@ -1,4 +1,6 @@
 const weapons = ["rock","paper","scrissors"];
+let playerScore = 0;
+let computerScore = 0;
 
 
 function getComputerChoice() {
@@ -7,46 +9,66 @@ return(choice);
 }
 
 
-let computerChoice = getComputerChoice();
-let userChoice = prompt ("Choose your weapon:");
-
-
 function playRound(userChoice, computerChoice) {
-
+    
     userChoice = userChoice.toLowerCase();
-    computerChoice = computerChoice.toLowerCase();
 
     if (userChoice === computerChoice) {
-        return("It's even!") + (" ") + ("Score:") + (score = 0)
+        return("It's even!")  
     }
     else if ((userChoice === "rock") && (computerChoice === "scrissors")) {
-        return("You win! Rock beats scrissors.") + (" ") + (
-            "Computer  Score:") + (" ")  + (score=1)
+        playerScore++
+        return(`You win! Rock beats scrissors. Your score: ${playerScore} Computer score: ${computerScore}`)
+        
     }
     else if ((userChoice === "rock") && (computerChoice === "paper")) {
-         return("You loose! Paper wraps the rock!") + (" ") + (
-            "Computer  Score:") + (" ")  + (computerScore=1)
+         computerScore++ 
+         return(`You loose! Paper wraps the rock! Your score: ${playerScore} Computer score: ${computerScore}`)
+        
     }
     else if ((userChoice === "paper") && (computerChoice === "scrissors")) {
-        return("You loose! Scrissors cut the paper.") + (" ") + (
-            "Computer  Score:") + (" ")  + (computerScore=1)
+        computerScore++
+        return(`You loose! Scrissors cut the paper. Your score: ${playerScore} Computer score: ${computerScore}`)
+        
     }
     else if ((userChoice === "paper") && (computerChoice === "rock")) {
-        return("You win! Paper beats rock.") + (" ") + (
-            "Score:") + (" ")   + (score = 1)
-    }
+        playerScore++
+        return(`You win! Paper beats rock. Your score: ${playerScore} Computer score: ${computerScore}`)
+    } 
     else if ((userChoice === "scrissors") && (computerChoice === "rock")) {
-        return("You loose! Rock smashes the srissors") + (" ") + (
-            "Computer Score:") + (" ") + (computerScore=1)
+        computerScore++
+        return(`You loose! Rock smashes the scrissors. Your score: ${playerScore} Computer score: ${computerScore}`)
+        
     }
     else if ((userChoice === "scrissors") && (computerChoice === "paper")) {
-        return("You win! Cheers!") + (" ") + (
-            "Score:") + (" ") + (score = 1)
+        playerScore++
+        return(`You win! Cheers! Your score: ${playerScore} Computer score: ${computerScore}`)
+         
     }
 }
 
-console.log(getComputerChoice());
-console.log(playRound(userChoice,computerChoice))
+
+
+
+function game() {
+    for (let i=0; i<5; i++) {
+    const userChoice = prompt("Choose your weapon:,", "Rock? Paper? Scrissors?");
+    const computerChoice = getComputerChoice();
+    console.log(computerChoice);
+    console.log(playRound(userChoice,computerChoice)) }
+
+    if (playerScore > computerScore) {
+        alert("You won the match!  Congrat's!")
+    }
+    else if (computerScore > playerScore) {
+        alert("Better luck next time! You lost this one...")
+    }
+    else if (computerScore === playerScore) {
+        alert("It's a tie! One more match to decide the winner!")
+    }
+
+}
+game()
 
 
 
