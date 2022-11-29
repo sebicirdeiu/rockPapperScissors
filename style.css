@@ -1,0 +1,12 @@
+button{ background-color: mediumpurple;
+        display:flex;
+        flex-direction: column;
+        justify-content: space-around;
+        margin-bottom: 2em;
+        width: 80px;
+        height: 30px;
+        text-align: center;
+        font-weight: bold;
+        border: black, 2px;
+        align-items: center;
+}

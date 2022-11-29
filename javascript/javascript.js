@@ -1,6 +1,11 @@
-const weapons = ["rock","paper","scrissors"];
+const weapons = ["rock","paper","scissors"];
 let playerScore = 0;
 let computerScore = 0;
+let round = 0;
+
+let rockButton = document.querySelector('.rock');
+let paperButton = document.querySelector('.paper');
+let scissorsButton = document.querySelector('.scissors');
 
 
 function getComputerChoice() {
@@ -10,68 +15,137 @@ return(choice);
 
 
 function playRound(userChoice, computerChoice) {
-    
-    userChoice = userChoice.toLowerCase();
+        const outcome = document.querySelector('.outcome');
 
     if (userChoice === computerChoice) {
-        return("It's even!")  
+     const p = document.createElement('p');
+        p.textContent = `${computerChoice}! It's even!`;
+        outcome.appendChild(p);  
     }
-    else if ((userChoice === "rock") && (computerChoice === "scrissors")) {
-        playerScore++
-        return(`You win! Rock beats scrissors. Your score: ${playerScore} Computer score: ${computerScore}`)
-        
+    else if ((userChoice === "rock") && (computerChoice === "scissors")) {
+        playerScore++ ;
+        const p = document.createElement('p');
+        p.textContent = `${computerChoice}! You win! Rock beats scissors. Your score: ${playerScore} Computer score: ${computerScore}`
+        outcome.appendChild(p);
     }
     else if ((userChoice === "rock") && (computerChoice === "paper")) {
-         computerScore++ 
-         return(`You loose! Paper wraps the rock! Your score: ${playerScore} Computer score: ${computerScore}`)
-        
+         computerScore++ ;
+         const p = document.createElement('p');
+         p.textContent = `${computerChoice}! You loose! Paper wraps the rock! Your score: ${playerScore} Computer score: ${computerScore}`
+         outcome.appendChild(p);
     }
-    else if ((userChoice === "paper") && (computerChoice === "scrissors")) {
-        computerScore++
-        return(`You loose! Scrissors cut the paper. Your score: ${playerScore} Computer score: ${computerScore}`)
-        
+    else if ((userChoice === "paper") && (computerChoice === "scissors")) {
+        computerScore++ ;
+        const p = document.createElement('p');
+        p.textContent =`${computerChoice}! You loose! Scissors cut the paper. Your score: ${playerScore} Computer score: ${computerScore}`;
+        outcome.appendChild(p);
     }
     else if ((userChoice === "paper") && (computerChoice === "rock")) {
-        playerScore++
-        return(`You win! Paper beats rock. Your score: ${playerScore} Computer score: ${computerScore}`)
+        playerScore++;
+        const p = document.createElement('p');
+        p.textContent = `${computerChoice}! You win! Paper beats rock. Your score: ${playerScore} Computer score: ${computerScore}`;
+        outcome.appendChild(p);
     } 
-    else if ((userChoice === "scrissors") && (computerChoice === "rock")) {
-        computerScore++
-        return(`You loose! Rock smashes the scrissors. Your score: ${playerScore} Computer score: ${computerScore}`)
+    else if ((userChoice === "scissors") && (computerChoice === "rock")) {
+        computerScore++ ;
+        const p = document.createElement('p');
+        p.textContent = `${computerChoice}! You loose! Rock smashes the scissors. Your score: ${playerScore} Computer score: ${computerScore}`;
+        outcome.appendChild(p);
         
     }
-    else if ((userChoice === "scrissors") && (computerChoice === "paper")) {
-        playerScore++
-        return(`You win! Cheers! Your score: ${playerScore} Computer score: ${computerScore}`)
+    else if ((userChoice === "scissors") && (computerChoice === "paper")) {
+        playerScore++ ;
+        const p = document.createElement('p');
+        p.textContent = `${computerChoice}! You win! Cheers! Your score: ${playerScore} Computer score: ${computerScore}`;
+        outcome.appendChild(p);
          
     }
 }
 
 
+    const body = document.querySelector('body');
+    const winner = document.createElement('div');
+    winner.classList.add('winner');
+    body.appendChild(winner);
 
 
-function game() {
-    for (let i=0; i<5; i++) {
-    const userChoice = prompt("Choose your weapon:,", "Rock? Paper? Scrissors?");
-    const computerChoice = getComputerChoice();
-    console.log(computerChoice);
-    console.log(playRound(userChoice,computerChoice)) }
+function checkForWinner (playerScore,computerScore){
 
-    if (playerScore > computerScore) {
-        alert("You won the match!  Congrat's!")
+    if (playerScore === 5) {
+    const h2 = document.createElement('h2');
+    h2.textContent= "Yohoo! Winner of the day!!";
+    h2.setAttribute('style', 'color: green')
+    winner.appendChild(h2);}
+
+    else if (computerScore === 5) {
+    const h2 = document.createElement('h2');
+    h2.textContent= "Ouch, you lost this match unfortunatelly..";
+    h2.setAttribute('style', 'color: red')
+    winner.appendChild(h2);
     }
-    else if (computerScore > playerScore) {
-        alert("Better luck next time! You lost this one...")
-    }
-    else if (computerScore === playerScore) {
-        alert("It's a tie! One more match to decide the winner!")
-    }
 
+    
 }
-game()
 
 
 
 
+
+
+rockButton.addEventListener('click', () => {
+    const computerSelection = getComputerChoice();
+    const userSelection = "rock";
+    console.log(playRound(userSelection,computerSelection));
+    console.log(checkForWinner(playerScore,computerScore));
+    
+});
+
+paperButton.addEventListener('click', () => {
+    const computerSelection = getComputerChoice();
+    const userSelection = "paper";
+    console.log(playRound(userSelection,computerSelection));
+    console.log(checkForWinner(playerScore,computerScore));
+    
+
+
+});
+
+scissorsButton.addEventListener('click', () => {
+    const computerSelection = getComputerChoice();
+    const userSelection = "scissors";
+    console.log(playRound(userSelection,computerSelection));
+    console.log(checkForWinner(playerScore,computerScore));
+
+}); 
+
+
+
+
+
+
+
+    //function game () {
+        // outcome = document.querySelector('.outcome');
+      //  if (round === 4) {
+
+                        
+
+         //   if (computerScore === 5) {
+          //      const p = document.createElement('p');
+          //      p.textContent = "Ouch, you lost this match unfortunatelly..."
+            //    outcome.appendChild(p);
+          //  }
+          //  else if ( playerScore === 5) {
+          //      const p = document.createElement('p');
+            //    p.textContent = "Yohoo! Winner of the day!!"
+            //    outcome.appendChild(p);
+           // }
+      //  }}; 
+
+        
+        
+    
+   
+    
 
     
